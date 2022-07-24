@@ -16,7 +16,6 @@ import javax.ws.rs.Produces;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.knf.demo.model.Employee;
@@ -53,7 +52,6 @@ public class EmployeeController {
 	@Produces("application/json")
 	@Consumes("application/json")
 	@Path("/employees")
-	@PostMapping("/employees")
 	public Employee createEmployee(Employee employee) {
 		return employeeRepository.save(employee);
 	}
