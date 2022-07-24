@@ -39,11 +39,9 @@ public class EmployeeController {
 	@Produces("application/json")
 	@Consumes("application/json")
 	@Path("/employees/{id}")
-	public ResponseEntity<Employee> getEmployeeById
-          (@PathParam(value = "id") Long employeeId) {
+	public ResponseEntity<Employee> getEmployeeById(@PathParam(value = "id") Long employeeId) {
 
-		Employee employee = employeeRepository
-             .findById(employeeId).orElseThrow();
+		Employee employee = employeeRepository.findById(employeeId).orElseThrow();
 
 		return ResponseEntity.ok().body(employee);
 	}
@@ -60,29 +58,24 @@ public class EmployeeController {
 	@Produces("application/json")
 	@Consumes("application/json")
 	@Path("/employees/{id}")
-	public ResponseEntity<Employee> updateEmployee
-          (@PathParam(value = "id") Long employeeId,
+	public ResponseEntity<Employee> updateEmployee(@PathParam(value = "id") Long employeeId,
 			@RequestBody Employee employeeDetails) {
 
-		Employee employee = employeeRepository
-            .findById(employeeId).orElseThrow();
+		Employee employee = employeeRepository.findById(employeeId).orElseThrow();
 
 		employee.setEmailId(employeeDetails.getEmailId());
 		employee.setLastName(employeeDetails.getLastName());
 		employee.setFirstName(employeeDetails.getFirstName());
 
-		return ResponseEntity
-            .ok(employeeRepository.save(employee));
+		return ResponseEntity.ok(employeeRepository.save(employee));
 	}
 
 	@DELETE
 	@Produces("application/json")
 	@Consumes("application/json")
 	@Path("/employees/{id}")
-	public Map<String, Boolean> deleteEmployee
-        (@PathParam(value = "id") Long employeeId) {
-		Employee employee = employeeRepository
-            .findById(employeeId).orElseThrow();
+	public Map<String, Boolean> deleteEmployee(@PathParam(value = "id") Long employeeId) {
+		Employee employee = employeeRepository.findById(employeeId).orElseThrow();
 
 		employeeRepository.delete(employee);
 		Map<String, Boolean> response = new HashMap<>();
